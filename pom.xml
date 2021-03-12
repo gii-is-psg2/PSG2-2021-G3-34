@@ -23,6 +23,14 @@
         		<role>Development Team member</role>
       		</roles>
     	</developer>
+    	<developer>
+      		<id>migdurgon</id>
+      		<name>Miguel Duran Gonzalez</name>
+      		<email>migdurgon@alum.us.es</email>
+      		<roles>
+        		<role>Development Team member</role>
+      		</roles>
+    	</developer>
   	</developers>
 
     <properties>
