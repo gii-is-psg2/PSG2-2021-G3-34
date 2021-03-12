@@ -14,6 +14,17 @@
     </parent>
     <name> PSG2-2021-G3-34 Petclinic</name>
 
+	<developers>
+    	<developer>
+      		<id>isadede</id>
+      		<name>Isabel de Vergara de Orellana</name>
+      		<email>isadede@alum.us.es</email>
+      		<roles>
+        		<role>Development Team member</role>
+      		</roles>
+    	</developer>
+  	</developers>
+
     <properties>
 
         <!-- Generic properties -->
