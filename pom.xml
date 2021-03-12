@@ -31,6 +31,14 @@
         		<role>Development Team member</role>
       		</roles>
     	</developer>
+    	<developer>
+      		<id>fraprapra1</id>
+      		<name>Francisco Javier de la Prada Prados</name>
+      		<email>fraprapra1@alum.us.es</email>
+      		<roles>
+        		<role>Development Team member</role>
+      		</roles>
+    	</developer>
   	</developers>
 
     <properties>
