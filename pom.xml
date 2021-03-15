@@ -39,6 +39,14 @@
         		<role>Development Team member</role>
       		</roles>
     	</developer>
+    	<developer>
+      		<id>marmarave</id>
+      		<name>Mariano Martin Avecilla</name>
+      		<email>marmarave@alum.us.es</email>
+      		<roles>
+        		<role>Development Team member</role>
+      		</roles>
+    	</developer>
   	</developers>
 
     <properties>
