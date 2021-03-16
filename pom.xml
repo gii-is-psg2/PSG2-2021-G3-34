@@ -47,6 +47,14 @@
         		<role>Development Team member</role>
       		</roles>
     	</developer>
+    	<developer>
+      		<id>pakote13rg</id>
+      		<name>Pablo Rodriguez Gomez</name>
+      		<email>pabrodgom5@alum.us.es</email>
+      		<roles>
+        		<role>Development Team member</role>
+      		</roles>
+    	</developer>
   	</developers>
 
     <properties>
