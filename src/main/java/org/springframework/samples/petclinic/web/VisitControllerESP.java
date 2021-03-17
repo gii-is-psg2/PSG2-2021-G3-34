@@ -84,7 +84,7 @@ public class VisitControllerESP {
 		}
 	}
 
-	@GetMapping(value = "/ownersESP/*/petsESP/{petId}/visitsESP/new")
+	@GetMapping(value = "/ownersESP/*/petsESP/{petId}/visitsESP")
 	public String showVisits(@PathVariable int petId, Map<String, Object> model) {
 		model.put("visits", this.petService.findPetById(petId).getVisits());
 		return "visitList";
