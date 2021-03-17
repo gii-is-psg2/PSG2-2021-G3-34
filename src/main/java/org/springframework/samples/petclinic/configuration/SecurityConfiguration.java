@@ -60,7 +60,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 http.csrf().ignoringAntMatchers("/h2-console/**");
                 http.headers().frameOptions().sameOrigin();
 	}
-
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
