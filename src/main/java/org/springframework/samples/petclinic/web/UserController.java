@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
 
-	private static final String VIEWS_OWNER_CREATE_FORM = "users/createOwnerForm";
+	private static final String VIEWS_OWNER_CREATE_FORM = "usersESP/createOwnerForm";
 
 	private final OwnerService ownerService;
 
@@ -53,14 +53,14 @@ public class UserController {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	@GetMapping(value = "/users/new")
+	@GetMapping(value = "/usersESP/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Owner owner = new Owner();
 		model.put("owner", owner);
 		return VIEWS_OWNER_CREATE_FORM;
 	}
 
-	@PostMapping(value = "/users/new")
+	@PostMapping(value = "/usersESP/new")
 	public String processCreationForm(@Valid Owner owner, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_FORM;
