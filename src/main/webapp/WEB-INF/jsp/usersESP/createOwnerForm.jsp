@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags/es" %>
 
 <petclinic:layout pageName="owners">
     <h2>
@@ -13,7 +13,7 @@
     <form:form modelAttribute="owner" class="form-horizontal" id="add-owner-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="Nombre" name="firstName"/>
-            <petclinic:inputField label="Apellido" name="lastName"/>
+            <petclinic:inputField label="Apellidos" name="lastName"/>
             <petclinic:inputField label="Dirección" name="address"/>
             <petclinic:inputField label="Ciudad" name="city"/>
             <petclinic:inputField label="Teléfono" name="telephone"/>
