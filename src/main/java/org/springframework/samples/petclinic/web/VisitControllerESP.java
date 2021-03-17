@@ -67,13 +67,13 @@ public class VisitControllerESP {
 	}
 
 	// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
-	@GetMapping(value = "/ownersESP/*/pets/{petId}/visits/new")
+	@GetMapping(value = "/ownersESP/*/petsESP/{petId}/visitsESP/new")
 	public String initNewVisitForm(@PathVariable("petId") int petId, Map<String, Object> model) {
 		return "petsESP/createOrUpdateVisitForm";
 	}
 
 	// Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
-	@PostMapping(value = "/ownersESP/{ownerId}/pets/{petId}/visits/new")
+	@PostMapping(value = "/ownersESP/{ownerId}/petsESP/{petId}/visitsESP/new")
 	public String processNewVisitForm(@Valid Visit visit, BindingResult result) {
 		if (result.hasErrors()) {
 			return "petsESP/createOrUpdateVisitForm";
@@ -84,7 +84,7 @@ public class VisitControllerESP {
 		}
 	}
 
-	@GetMapping(value = "/ownersESP/*/pets/{petId}/visits")
+	@GetMapping(value = "/ownersESP/*/petsESP/{petId}/visitsESP/new")
 	public String showVisits(@PathVariable int petId, Map<String, Object> model) {
 		model.put("visits", this.petService.findPetById(petId).getVisits());
 		return "visitList";
