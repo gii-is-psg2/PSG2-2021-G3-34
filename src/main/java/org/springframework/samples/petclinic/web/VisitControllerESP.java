@@ -67,7 +67,7 @@ public class VisitControllerESP {
 	}
 
 	// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
-	@GetMapping(value = "/ownersESP/*/pets/{petId}/visits/new")
+	@GetMapping(value = "/ownersESP/*/petsESP/{petId}/visitsESP/new")
 	public String initNewVisitForm(@PathVariable("petId") int petId, Map<String, Object> model) {
 		return "petsESP/createOrUpdateVisitForm";
 	}
