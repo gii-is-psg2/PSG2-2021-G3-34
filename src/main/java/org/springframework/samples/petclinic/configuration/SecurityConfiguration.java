@@ -35,11 +35,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/resources/**","/webjars/**","/h2-console/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
+				.antMatchers(HttpMethod.GET, "/oupsESP").permitAll()
 				.antMatchers("/users/new").permitAll()
+				.antMatchers("/usersESP/new").permitAll()
 				.antMatchers("/admin/**").hasAnyAuthority("admin")
 				.antMatchers("/owners/**").hasAnyAuthority("owner","admin")		
 				.antMatchers("/ownersESP/**").hasAnyAuthority("owner","admin")				
-				.antMatchers("/vets/**").authenticated()
+				.antMatchers("/vets/**").authenticated()		
+				.antMatchers("/vetsESP/**").authenticated()
 				.antMatchers("/bienvenido").permitAll()
 				.antMatchers("/welcome").permitAll()
 				.anyRequest().denyAll()
@@ -57,7 +60,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 http.csrf().ignoringAntMatchers("/h2-console/**");
                 http.headers().frameOptions().sameOrigin();
 	}
-
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
