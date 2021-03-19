@@ -4,7 +4,7 @@ project:
   teamId: '34'
   identities:
     github:
-      url: 'https://github.com/gii-is-psg2/PSG2-2021-G3-34.git'
+      url: 'https://github.com/gii-is-psg2/PSG2-2021-G3-34'
   members:
     member1:
       name: 'Isabel'
