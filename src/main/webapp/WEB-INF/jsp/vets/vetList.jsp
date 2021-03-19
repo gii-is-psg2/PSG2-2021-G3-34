@@ -10,8 +10,8 @@
     <table id="vetsTable" class="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Specialties</th>
+            <th>Nombre</th>
+            <th>Especialidades</th>
         </tr>
         </thead>
         <tbody>
@@ -34,8 +34,12 @@
     <table class="table-buttons">
         <tr>
             <td>
-                <a href="<spring:url value="/vets.xml" htmlEscape="true" />">View as XML</a>
+                <a href="<spring:url value="/vets.xml" htmlEscape="true" />">Ver como un XML</a>
             </td>            
         </tr>
     </table>
+    
+    <sec:authorize access="hasAuthority('admin')">
+        <a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Añadir Vet</a>
+    </sec:authorize>
 </petclinic:layout>

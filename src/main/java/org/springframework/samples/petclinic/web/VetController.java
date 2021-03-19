@@ -16,9 +16,11 @@
 package org.springframework.samples.petclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -61,4 +63,10 @@ public class VetController {
 		return vets;
 	}
 
+	@GetMapping(path="/vets/new")
+	public String crearBibliotecario(ModelMap modelmap) {
+		String vista = "vets/createOrUpdateVetForm";
+		modelmap.addAttribute("vet", new Vet());
+		return vista;
+	}
 }
