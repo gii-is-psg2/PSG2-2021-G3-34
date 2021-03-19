@@ -20,10 +20,10 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Birth Date</th>
-                <th>Type</th>
-                <th>Owner</th>
+                <th>Nombre</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Tipo</th>
+                <th>Dueño</th>
             </tr>
             </thead>
             <tr>
@@ -36,8 +36,8 @@
 
         <form:form modelAttribute="visit" class="form-horizontal">
             <div class="form-group has-feedback">
-                <petclinic:inputField label="Date" name="date"/>
-                <petclinic:inputField label="Description" name="description"/>
+                <petclinic:inputField label="Fecha" name="date"/>
+                <petclinic:inputField label="Descripcion" name="description"/>
             </div>
 
             <div class="form-group">
@@ -49,11 +49,11 @@
         </form:form>
 
         <br/>
-        <b>Previous Visits</b>
+        <b>Visitas Anteriores</b>
         <table class="table table-striped">
             <tr>
-                <th>Date</th>
-                <th>Description</th>
+                <th>Fecha</th>
+                <th>Descripcion</th>
             </tr>
             <c:forEach var="visit" items="${visit.pet.visits}">
                 <c:if test="${!visit['new']}">
