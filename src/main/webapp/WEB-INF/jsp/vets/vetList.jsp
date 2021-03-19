@@ -38,4 +38,8 @@
             </td>            
         </tr>
     </table>
+    
+    <sec:authorize access="hasAuthority('admin')">
+        <a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Añadir Vet</a>
+    </sec:authorize>
 </petclinic:layout>
