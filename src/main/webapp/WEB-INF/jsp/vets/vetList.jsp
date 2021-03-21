@@ -12,6 +12,8 @@
         <tr>
             <th>Nombre</th>
             <th>Especialidades</th>
+            <th>Opciones</th>
+            
         </tr>
         </thead>
         <tbody>
@@ -20,11 +22,18 @@
                 <td>
                     <c:out value="${vet.firstName} ${vet.lastName}"/>
                 </td>
+
                 <td>
                     <c:forEach var="specialty" items="${vet.specialties}">
                         <c:out value="${specialty.name} "/>
                     </c:forEach>
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
+                </td>
+                <td>
+						<a href="<spring:url value="vets/{vetId}/edit" >
+                        <spring:param name="vetId" value="${vet.id}"/>
+                        </spring:url>" class="btn btn-default">
+                    Editar</a>
                 </td>
             </tr>
         </c:forEach>
@@ -40,6 +49,6 @@
     </table>
     
     <sec:authorize access="hasAuthority('admin')">
-        <a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Añadir Vet</a>
+        <a class="btn btn-default" href='<spring:url value="/vets/save" htmlEscape="true"/>'>Añadir Vet</a>
     </sec:authorize>
 </petclinic:layout>
