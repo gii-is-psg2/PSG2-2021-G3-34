@@ -4,8 +4,9 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 <!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->  
 
+<div align="center">
 <petclinic:layout pageName="home">
-    <h2><fmt:message key="Welcome to the PSG2-2021-G3-34 Petclinic"/></h2>
+    <h2>Welcome to the PSG2-2021-G3-34 Petclinic</h2>
     <div class="row">
         <div class="col-md-12">
             <spring:url value="/resources/images/pastor-aleman.png" htmlEscape="true" var="petsImage"/>
@@ -13,3 +14,4 @@
         </div>
     </div>
 </petclinic:layout>
+</div>
