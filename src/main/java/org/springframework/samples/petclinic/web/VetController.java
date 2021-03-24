@@ -79,7 +79,7 @@ public class VetController {
 	}
 
 	@GetMapping(path="/vets/save")
-	public String crearBibliotecario(ModelMap modelmap) {
+	public String crearVeterinario(ModelMap modelmap) {
 		String vista = "vets/createOrUpdateVetForm";
 		modelmap.addAttribute("vet", new Vet());
 
