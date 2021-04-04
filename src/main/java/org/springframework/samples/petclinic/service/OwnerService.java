@@ -43,7 +43,8 @@ import org.springframework.util.StringUtils;
 @Service
 public class OwnerService {
 
-	private OwnerRepository ownerRepository;	
+	private OwnerRepository ownerRepository;
+	private VisitRepository visitRepository;
 	
 	@Autowired
 	private UserService userService;
@@ -75,5 +76,16 @@ public class OwnerService {
 		//creating authorities
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}		
+	
+	public void deleteOwner(Owner owner) {
+		ownerRepository.delete(owner.getId());
+	}
+	
+	public void deleteVisitsByPetId(int petId) {
+		visitRepository.deleteVisitsByPetId(petId);
+		
+	}
+	
+	
 
 }
