@@ -26,6 +26,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -150,5 +151,14 @@ public class PetController {
 			return "redirect:/owners/{ownerId}";
 		}
 	}
+        
+        @GetMapping(value = { "/pets/{petId}/delete"})
+    	public String delete(@PathVariable int petId, @PathVariable("ownerId") int ownerId, ModelMap model) {
+    		Owner ow = this.ownerService.findOwnerById(ownerId);
+        	Pet pet = this.petService.findPetById(petId);
+        	ow.removePet(pet);
+    		this.petService.deletePet(pet.getId());
+    		return "redirect:/owners/{ownerId}";
+    	}
 
 }

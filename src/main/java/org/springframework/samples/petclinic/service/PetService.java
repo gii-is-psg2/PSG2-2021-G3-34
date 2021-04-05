@@ -78,5 +78,9 @@ public class PetService {
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
 	}
+	
+	public void deletePet(int petId) {
+		petRepository.delete(petId);
+	}
 
 }
