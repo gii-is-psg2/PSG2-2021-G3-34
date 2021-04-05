@@ -20,6 +20,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
+import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -47,11 +48,14 @@ class OwnerControllerTests {
 	@MockBean
 	private OwnerService clinicService;
         
-        @MockBean
+    @MockBean
 	private UserService userService;
+    
+    @MockBean
+	private PetService petService;
         
-        @MockBean
-        private AuthoritiesService authoritiesService; 
+    @MockBean
+    private AuthoritiesService authoritiesService; 
 
 	@Autowired
 	private MockMvc mockMvc;
