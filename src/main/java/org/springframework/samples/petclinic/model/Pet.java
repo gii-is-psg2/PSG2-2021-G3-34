@@ -15,8 +15,6 @@
  */
 package org.springframework.samples.petclinic.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,6 +34,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Simple business object representing a pet.
@@ -61,15 +61,9 @@ public class Pet extends NamedEntity {
 	private Owner owner;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Set<Visit> visits;
-	
-	// A 2.3.3.a
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Set<Booking> bookings;
 
-	public void setBirthDate(final LocalDate birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -81,7 +75,7 @@ public class Pet extends NamedEntity {
 		return this.type;
 	}
 
-	public void setType(final PetType type) {
+	public void setType(PetType type) {
 		this.type = type;
 	}
 
@@ -89,7 +83,7 @@ public class Pet extends NamedEntity {
 		return this.owner;
 	}
 
-	protected void setOwner(final Owner owner) {
+	protected void setOwner(Owner owner) {
 		this.owner = owner;
 	}
 
@@ -100,43 +94,19 @@ public class Pet extends NamedEntity {
 		return this.visits;
 	}
 
-	protected void setVisitsInternal(final Set<Visit> visits) {
+	protected void setVisitsInternal(Set<Visit> visits) {
 		this.visits = visits;
 	}
 
 	public List<Visit> getVisits() {
-		final List<Visit> sortedVisits = new ArrayList<>(this.getVisitsInternal());
+		List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
 		PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
 		return Collections.unmodifiableList(sortedVisits);
 	}
 
-	public void addVisit(final Visit visit) {
-		this.getVisitsInternal().add(visit);
+	public void addVisit(Visit visit) {
+		getVisitsInternal().add(visit);
 		visit.setPet(this);
 	}
 
-	//A 2.3.3.a
-	
-	protected Set<Booking> getBookingsInternal() {
-		if (this.bookings == null) {
-			this.bookings = new HashSet<>();
-		}
-		return this.bookings;
-	}
-
-	protected void setBookingsInternal(final Set<Booking> bookings) {
-		this.bookings = bookings;
-	}
-
-	public List<Booking> getBookings() {
-		final List<Booking> sortedBookings = new ArrayList<>(this.getBookingsInternal());
-		PropertyComparator.sort(sortedBookings, new MutableSortDefinition("date", false, false));
-		return Collections.unmodifiableList(sortedBookings);
-	}
-
-	public void addBooking(final Booking booking) {
-		this.getBookingsInternal().add(booking);
-		booking.setPet(this);
-	}
-	
 }

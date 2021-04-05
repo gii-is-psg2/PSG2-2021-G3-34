@@ -45,12 +45,7 @@ public class VetService {
 
 	private VetRepository vetRepository;
 
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private AuthoritiesService authoritiesService;
-	
+
 	@Autowired
 	public VetService(VetRepository vetRepository) {
 		this.vetRepository = vetRepository;
@@ -60,15 +55,5 @@ public class VetService {
 	public Collection<Vet> findVets() throws DataAccessException {
 		return vetRepository.findAll();
 	}	
-	
-	@Transactional
-	public void saveOwner(Vet vet) throws DataAccessException {
-		//creating vet
-		vetRepository.save(vet);		
-		//creating user
-		userService.saveUser(vet.getUser());
-		//creating authorities
-		authoritiesService.saveAuthorities(vet.getUser().getUsername(), "veterinarian");
-	}
 
 }
