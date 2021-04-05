@@ -46,6 +46,7 @@
             </div>
         </form:form>
         <c:if test="${!pet['new']}">
+        <a class="btn btn-default" href="/owners/${owner.id}/pets/${pet.id}/delete"><fmt:message key="deletePet"/>Eliminar mascota</a>
         </c:if>
     </jsp:body>
 </petclinic:layout>

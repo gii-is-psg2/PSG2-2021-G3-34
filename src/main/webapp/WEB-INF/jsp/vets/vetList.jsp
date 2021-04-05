@@ -29,12 +29,16 @@
                     </c:forEach>
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
+
+                 <td><a class="btn btn-default" href="/vets/${vet.id}/delete">Eliminar veterinario</a></td>
+
                 <td>
 						<a href="<spring:url value="vets/{vetId}/edit" >
                         <spring:param name="vetId" value="${vet.id}"/>
                         </spring:url>" class="btn btn-default">
                     Editar</a>
                 </td>
+
             </tr>
         </c:forEach>
         </tbody>
@@ -49,6 +53,6 @@
     </table>
     
     <sec:authorize access="hasAuthority('admin')">
-        <a class="btn btn-default" href='<spring:url value="/vets/save" htmlEscape="true"/>'>Añadir Vet</a>
+        <a class="btn btn-default" href='<spring:url value="/vets/save" htmlEscape="true"/>'>AÃ±adir Vet</a>
     </sec:authorize>
 </petclinic:layout>
