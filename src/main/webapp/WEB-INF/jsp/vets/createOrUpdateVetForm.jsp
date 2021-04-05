@@ -27,7 +27,7 @@
                         <button class="btn btn-default" type="submit">Añadir Veterinario</button>
                     </c:when>
                     <c:otherwise>
-                        <button class="btn btn-default" type="submit">Actualizar Veterianrio</button>
+                        <button class="btn btn-default" type="submit">Actualizar Veterinario</button>
                     </c:otherwise>
                 </c:choose>
             </div>

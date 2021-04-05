@@ -6,7 +6,7 @@
 
 <div align="center">
 <petclinic:layout pageName="home">
-    <h2>Welcome to the PSG2-2021-G3-34 Petclinic</h2>
+    <h2><fmt:message key="welcome"/></h2>
 
     <div class="row">
         <div class="col-md-12">

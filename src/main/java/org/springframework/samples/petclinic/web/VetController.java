@@ -36,7 +36,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -58,9 +60,9 @@ public class VetController {
     }
 	 
 	@ModelAttribute("specialties")
-	    public Collection<Specialty> populateSpecialties() {
-	        return this.vetService.findSpecialties();
-	    }
+	public Collection<Specialty> populateSpecialties() {
+	    return this.vetService.findSpecialties();
+	}
 
 	@GetMapping(value = { "/vets" })
 	public String showVetList(Map<String, Object> model) {
@@ -93,7 +95,8 @@ public class VetController {
 	public String crearVeterinario(ModelMap modelmap) {
 		String vista = "vets/createOrUpdateVetForm";
 		modelmap.addAttribute("vet", new Vet());
-
+		//List<String> specialties = vetService.findSpecialties().stream().map(x->x.getName()).collect(Collectors.toList());
+		//modelmap.addAttribute("specialtiesnames", specialties);
 		return vista;
 	}
 	

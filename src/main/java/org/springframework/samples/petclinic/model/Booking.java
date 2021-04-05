@@ -36,7 +36,6 @@ public @Data class Booking extends BaseEntity{
 	@Column(name = "end_date")
 	private LocalDate endDate;
 	
-	@NotNull
 	@Max(20)
 	private Integer room;
 	

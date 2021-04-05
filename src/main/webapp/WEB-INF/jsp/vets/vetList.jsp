@@ -5,14 +5,15 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="vets">
-    <h2>Veterinarians</h2>
+    <h2>Veterinarios</h2>
 
     <table id="vetsTable" class="table table-striped">
         <thead>
         <tr>
             <th>Nombre</th>
             <th>Especialidades</th>
-            <th>Opciones</th>
+            <th></th>
+            <th></th>
             
         </tr>
         </thead>
@@ -30,7 +31,7 @@
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
 
-                 <td><a class="btn btn-default" href="/vets/${vet.id}/delete">Eliminar veterinario</a></td>
+                 <td><a class="btn btn-default" href="/vets/${vet.id}/delete">Eliminar</a></td>
 
                 <td>
 						<a href="<spring:url value="vets/{vetId}/edit" >
@@ -53,6 +54,6 @@
     </table>
     
     <sec:authorize access="hasAuthority('admin')">
-        <a class="btn btn-default" href='<spring:url value="/vets/save" htmlEscape="true"/>'>Añadir Vet</a>
+        <a class="btn btn-default" href='<spring:url value="/vets/save" htmlEscape="true"/>'>Añadir Veterinario</a>
     </sec:authorize>
 </petclinic:layout>
