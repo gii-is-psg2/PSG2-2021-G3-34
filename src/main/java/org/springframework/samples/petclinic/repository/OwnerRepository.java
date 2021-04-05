@@ -26,6 +26,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Spring Data JPA OwnerRepository interface
@@ -61,7 +62,6 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	 */	
 	@Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
 	public Owner findById(@Param("id") int id);
-	
 
 	// A 2.3.3.a
 	@Query("SELECT DISTINCT owner FROM Owner owner WHERE owner.user.username = :username")
@@ -70,5 +70,10 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	@Modifying
 	@Query("DELETE FROM Owner owner WHERE owner.id =:id")
 	public void deleteById(@Param("id") int id);
+
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM Owner owner where owner.id=:ownerId")
+	void delete(@Param("ownerId") int ownerId);
 
 }

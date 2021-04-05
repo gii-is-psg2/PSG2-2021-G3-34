@@ -45,7 +45,11 @@ import org.springframework.util.StringUtils;
 @Service
 public class OwnerService {
 
+
 	private final OwnerRepository ownerRepository;	
+
+	private OwnerRepository ownerRepository;
+	private VisitRepository visitRepository;
 	
 	@Autowired
 	private UserService userService;
@@ -75,6 +79,7 @@ public class OwnerService {
 		//creating user
 		this.userService.saveUser(owner.getUser());
 		//creating authorities
+
 		this.authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}
 
@@ -107,6 +112,17 @@ public class OwnerService {
     		this.ownerRepository.deleteById(id);
 			return owner;
     	}
+	}
+		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
+	}		
+	
+	public void deleteOwner(Owner owner) {
+		ownerRepository.delete(owner.getId());
+	}
+	
+	public void deleteVisitsByPetId(int petId) {
+		visitRepository.deleteVisitsByPetId(petId);
+		
 	}
 
 }

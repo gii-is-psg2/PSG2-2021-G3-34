@@ -10,19 +10,24 @@
     <h2>
         <c:if test="${vet['new']}">Nuevo </c:if> Vet
     </h2>
-    <form:form modelAttribute="vet" class="form-horizontal" id="add-vet-form">
+    <form:form modelAttribute="vet" class="form-horizontal" >
         <div class="form-group has-feedback">
             <petclinic:inputField label="Nombre" name="firstName"/>
             <petclinic:inputField label="Apellido" name="lastName"/>
+            <petclinic:inputField label="Nombre de usuario" name="user.username"/>
+            <petclinic:inputField label="Contraseña" name="user.password"/>
+            <petclinic:selectField name="specialties" label="Especialidades " names="${specialties}" size="5"/>
+            
+            
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${vet['new']}">
-                        <button class="btn btn-default" type="submit">Añadir Vet</button>
+                        <button class="btn btn-default" type="submit">Añadir Veterinario</button>
                     </c:when>
                     <c:otherwise>
-                        <button class="btn btn-default" type="submit">Actualizar Vet</button>
+                        <button class="btn btn-default" type="submit">Actualizar Veterianrio</button>
                     </c:otherwise>
                 </c:choose>
             </div>
