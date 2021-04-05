@@ -62,3 +62,17 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
+INSERT INTO bookings VALUES(1, '2021-01-10', 9, '2021-01-03', 3);
+INSERT INTO bookings VALUES(2, '2021-01-10', 2, '2021-01-03', 4);
+INSERT INTO bookings VALUES(3, '2021-03-20', 11, '2021-03-16', 3);
+INSERT INTO bookings VALUES(4, '2021-07-11', 13, '2021-07-10', 1);
+INSERT INTO bookings VALUES(5, '2021-04-26', 7, '2021-04-25', 1);
+INSERT INTO bookings VALUES(6, '2021-03-15', 11, '2021-03-14', 2);
+INSERT INTO bookings VALUES(7, '2021-06-07', 9, '2021-06-06', 2);
+INSERT INTO bookings VALUES(8, '2021-08-13', 5, '2021-08-12', 4);
+INSERT INTO bookings VALUES(9, '2021-11-14', 4, '2021-11-13', 5);
+INSERT INTO bookings VALUES(10, '2021-12-28', 1, '2021-12-27', 5);
+INSERT INTO bookings VALUES(11, '2021-10-11', 3, '2021-10-10', 5);
+
+
+
