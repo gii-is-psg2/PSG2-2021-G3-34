@@ -25,11 +25,8 @@ import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
-
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Specialty;
-
-
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,7 +48,6 @@ public interface VetRepository extends Repository<Vet, Integer>{
 	 * @return a <code>Collection</code> of <code>Vet</code>s
 	 */
 	Collection<Vet> findAll() throws DataAccessException;
-
 	
 	@Transactional
 	@Modifying
@@ -63,4 +59,7 @@ public interface VetRepository extends Repository<Vet, Integer>{
 	Vet findById(int id) throws DataAccessException;
 
 
+	@Query("SELECT ptype FROM Specialty ptype ORDER BY ptype.name")
+    List<Specialty> findSpecialties() throws DataAccessException;
 }
+

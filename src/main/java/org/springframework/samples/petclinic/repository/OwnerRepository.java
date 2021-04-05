@@ -16,8 +16,10 @@
 package org.springframework.samples.petclinic.repository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -60,7 +62,6 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	 */	
 	@Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
 	public Owner findById(@Param("id") int id);
-<<<<<<< HEAD
 
 	// A 2.3.3.a
 	@Query("SELECT DISTINCT owner FROM Owner owner WHERE owner.user.username = :username")
@@ -69,8 +70,6 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	@Modifying
 	@Query("DELETE FROM Owner owner WHERE owner.id =:id")
 	public void deleteById(@Param("id") int id);
-=======
->>>>>>> origin/master
 
 	@Transactional
 	@Modifying
