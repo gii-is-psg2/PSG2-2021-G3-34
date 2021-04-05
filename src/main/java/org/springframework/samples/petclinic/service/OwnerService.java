@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -23,6 +24,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
@@ -43,6 +45,9 @@ import org.springframework.util.StringUtils;
 @Service
 public class OwnerService {
 
+
+	private final OwnerRepository ownerRepository;	
+
 	private OwnerRepository ownerRepository;
 	private VisitRepository visitRepository;
 	
@@ -53,27 +58,61 @@ public class OwnerService {
 	private AuthoritiesService authoritiesService;
 
 	@Autowired
-	public OwnerService(OwnerRepository ownerRepository) {
+	public OwnerService(final OwnerRepository ownerRepository) {
 		this.ownerRepository = ownerRepository;
 	}	
 
 	@Transactional(readOnly = true)
-	public Owner findOwnerById(int id) throws DataAccessException {
-		return ownerRepository.findById(id);
+	public Owner findOwnerById(final int id) throws DataAccessException {
+		return this.ownerRepository.findById(id);
 	}
 
 	@Transactional(readOnly = true)
-	public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {
-		return ownerRepository.findByLastName(lastName);
+	public Collection<Owner> findOwnerByLastName(final String lastName) throws DataAccessException {
+		return this.ownerRepository.findByLastName(lastName);
 	}
 
 	@Transactional
-	public void saveOwner(Owner owner) throws DataAccessException {
+	public void saveOwner(final Owner owner) throws DataAccessException {
 		//creating owner
-		ownerRepository.save(owner);		
+		this.ownerRepository.save(owner);		
 		//creating user
-		userService.saveUser(owner.getUser());
+		this.userService.saveUser(owner.getUser());
 		//creating authorities
+
+		this.authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
+	}
+
+	//A 2.3.3.a
+	@Transactional(readOnly = true)
+	public Owner getPrincipal(){
+		Owner res = null;
+		
+		final User currentUser = this.userService.getPrincipal();
+		if(currentUser != null) {
+			final Optional<Owner> optionalOwner = this.ownerRepository.findByUserUsername(currentUser.getUsername());
+			if(optionalOwner.isPresent()) {
+				res = optionalOwner.get();
+			}
+		}
+		return res;
+	}
+	
+	public Optional<Owner> findByUserUsername(final String username) {
+		
+		return this.ownerRepository.findByUserUsername(username);
+	}
+	
+	@Transactional
+	public Owner deleteOwnerById(final int id) throws DataAccessException {
+		final Owner owner = this.findOwnerById(id);
+    	if(owner==null)
+    		return null;
+    	else {
+    		this.ownerRepository.deleteById(id);
+			return owner;
+    	}
+	}
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}		
 	
@@ -85,7 +124,5 @@ public class OwnerService {
 		visitRepository.deleteVisitsByPetId(petId);
 		
 	}
-	
-	
 
 }
