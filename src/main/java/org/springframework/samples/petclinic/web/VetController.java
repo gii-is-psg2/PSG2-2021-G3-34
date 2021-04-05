@@ -16,15 +16,17 @@
 package org.springframework.samples.petclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
+=======
+>>>>>>> origin/master
 import org.springframework.samples.petclinic.model.Vets;
 import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.validation.BindingResult;
@@ -91,6 +93,7 @@ public class VetController {
  		return "redirect:/vets";
  	}
 
+<<<<<<< HEAD
 	@GetMapping(path="/vets/save")
 	public String crearVeterinario(ModelMap modelmap) {
 		String vista = "vets/createOrUpdateVetForm";
@@ -136,4 +139,6 @@ public class VetController {
 	        return "vets/createOrUpdateVetForm";
 	    }
 	   
+=======
+>>>>>>> origin/master
 }
