@@ -5,14 +5,15 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="vets">
-    <h2>Veterinarians</h2>
+    <h2>Veterinarios</h2>
 
     <table id="vetsTable" class="table table-striped">
         <thead>
         <tr>
             <th>Nombre</th>
             <th>Especialidades</th>
-            <th>Opciones</th>
+            <th></th>
+            <th></th>
             
         </tr>
         </thead>
@@ -53,6 +54,6 @@
     </table>
     
     <sec:authorize access="hasAuthority('admin')">
-        <a class="btn btn-default" href='<spring:url value="/vets/save" htmlEscape="true"/>'>AÃ±adir Vet</a>
+        <a class="btn btn-default" href='<spring:url value="/vets/save" htmlEscape="true"/>'>Añadir Vet</a>
     </sec:authorize>
 </petclinic:layout>

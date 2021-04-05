@@ -47,8 +47,6 @@ public class OwnerService {
 
 
 	private final OwnerRepository ownerRepository;	
-
-	private OwnerRepository ownerRepository;
 	private VisitRepository visitRepository;
 	
 	@Autowired
@@ -112,8 +110,6 @@ public class OwnerService {
     		this.ownerRepository.deleteById(id);
 			return owner;
     	}
-	}
-		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}		
 	
 	public void deleteOwner(Owner owner) {

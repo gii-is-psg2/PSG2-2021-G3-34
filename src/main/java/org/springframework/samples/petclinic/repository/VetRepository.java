@@ -53,10 +53,7 @@ public interface VetRepository extends Repository<Vet, Integer>{
 	@Modifying
 	@Query("DELETE FROM Vet vet where vet.id=:vetId")
 	void delete(@Param("vetId") int vetId);
-	
-	void save( Vet vet);
-	
-	
+
 	
 	void save(Vet vet) throws DataAccessException;
 	Vet findById(int id) throws DataAccessException;
