@@ -34,4 +34,8 @@ public class CauseService {
 		return cause.getTarget() - cause.getDonations().stream().map(x->x.getAmount())
 				.mapToInt(Integer::valueOf).sum();
 	}
+	
+	public Cause findCauseById(int causeId) {
+		return causeRepository.findByCauseId(causeId);
+	}
 }
