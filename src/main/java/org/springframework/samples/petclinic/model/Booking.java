@@ -44,7 +44,7 @@ public @Data class Booking extends BaseEntity{
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Pet pet;
 
-	public NamedEntity getPet() {
+	public Pet getPet() {
 		return this.pet;
 	}	
 	
