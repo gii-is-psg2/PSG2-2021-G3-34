@@ -82,5 +82,10 @@ public class PetService {
 	public void deletePet(int petId) {
 		petRepository.delete(petId);
 	}
+	
+	@Transactional(readOnly = true)
+	public Iterable<Pet> findPetsInAdoption(){
+		return petRepository.findPetsInAdoption();
+	}	
 
 }
