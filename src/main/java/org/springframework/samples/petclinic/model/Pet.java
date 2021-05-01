@@ -21,6 +21,8 @@ import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +30,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import java.time.LocalDate;
@@ -47,6 +50,10 @@ import java.util.Set;
 @Entity
 @Table(name = "pets")
 public class Pet extends NamedEntity {
+	
+	@OneToOne
+	@JoinColumn(name="adoption")
+	Adoption adoption;
 
 	@Column(name = "birth_date")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
@@ -59,6 +66,13 @@ public class Pet extends NamedEntity {
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
 	private Owner owner;
+	
+	@NotNull
+	@Column(name = "in_adoption")
+	private Boolean inAdoption;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+	private Set<Adoption> adoptions;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -137,6 +151,37 @@ public class Pet extends NamedEntity {
 	public void addBooking(final Booking booking) {
 		this.getBookingsInternal().add(booking);
 		booking.setPet(this);
+	}
+	
+	protected Set<Adoption> getAdoptionsInternal() {
+		if (this.adoptions == null) {
+			this.adoptions  = new HashSet<>();
+		}
+		return this.adoptions;
+	}
+	
+	protected void setAdoptionsInternal(Set<Adoption> adoptions) {
+		this.adoptions = adoptions;
+	}
+	public List<Adoption> getAdoptions() {
+		List<Adoption> sortedAdoptions = new ArrayList<>(getAdoptionsInternal());
+		PropertyComparator.sort(sortedAdoptions, new MutableSortDefinition("date", false, false));
+		return Collections.unmodifiableList(sortedAdoptions);
+	}
+	
+
+	public void addAdoption(Adoption adoption) {
+		getAdoptionsInternal().add(adoption);
+		adoption.setPet(this);
+	}
+	public void removeAdoption(Adoption adoption) {
+		List<Adoption> adoptions = this.getAdoptions();
+		for (Adoption a : adoptions) {
+			if (a.getDescription() == null) {
+				this.adoptions.remove(a);
+			}
+		}
+		this.adoptions.remove(adoption);
 	}
 	
 }
