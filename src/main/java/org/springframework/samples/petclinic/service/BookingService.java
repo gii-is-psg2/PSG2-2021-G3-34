@@ -16,16 +16,10 @@ public class BookingService {
 
 	private final BookingRepository bookingRepository;
 
-	private final OwnerService ownerService;
-
-	private final PetService petService;
 
 	@Autowired
-	public BookingService(final BookingRepository bookingRepository, final OwnerService ownerService,
-			final PetService petService) {
+	public BookingService(final BookingRepository bookingRepository) {
 		this.bookingRepository = bookingRepository;
-		this.ownerService = ownerService;
-		this.petService = petService;
 	}
 
 	@Transactional
@@ -33,14 +27,14 @@ public class BookingService {
 		Collection<Integer> usedRooms = this.bookingRepository.findUsedRooms(booking.getStartDate(), booking.getEndDate());
 		if (usedRooms.size() >= 20) {
 			throw new NoRoomsAvailableException();
-		} if (bookingRepository.findAll().stream().anyMatch(x->((!booking.getStartDate().isAfter(x.getEndDate()) && 
+		} else if (bookingRepository.findAll().stream().anyMatch(x->((!booking.getStartDate().isAfter(x.getEndDate()) && 
 				!booking.getStartDate().isBefore(x.getStartDate())) || (!booking.getEndDate().isAfter(x.getEndDate()) && 
 				!booking.getEndDate().isBefore(x.getStartDate()))) && x.getPet() == booking.getPet())) {
 			throw new DuplicatedBookingException();
 		}
 		Boolean aux = true;
 		int possibleRoom = 1;
-		while (aux) {
+		while (Boolean.TRUE.equals(aux)) {
 			if (usedRooms.contains(possibleRoom))
 				possibleRoom += 1;
 			else
@@ -68,8 +62,7 @@ public class BookingService {
 	}
 
 	public Booking createBooking() {
-		final Booking res = new Booking();
-		return res;
+		return new Booking();
 	}
 
 	public Collection<Integer> findUsedRooms(final LocalDate startDate, final LocalDate endDate) {

@@ -186,8 +186,8 @@ public class Pet extends NamedEntity {
 		adoption.setPet(this);
 	}
 	public void removeAdoption(Adoption adoption) {
-		List<Adoption> adoptions = this.getAdoptions();
-		for (Adoption a : adoptions) {
+		List<Adoption> listAdoptions = this.getAdoptions();
+		for (Adoption a : listAdoptions) {
 			if (a.getDescription() == null) {
 				this.adoptions.remove(a);
 			}

@@ -45,7 +45,7 @@ public class AdoptionService {
 
 	@Transactional
 	public List<Adoption> findAllAdoptionsWithPendingState(List<Adoption> adoptions){
-		List<Adoption> res = new ArrayList<Adoption>();
+		List<Adoption> res = new ArrayList<>();
 		for (Adoption adoption: adoptions) {
 			if(adoption.getAdoptionStateType().equals(AdoptionStateType.PENDING)) {
 				res.add(adoption);
