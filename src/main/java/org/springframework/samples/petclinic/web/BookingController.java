@@ -1,11 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
-import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.validation.Valid;
 
@@ -15,7 +11,6 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.service.BookingService;
 import org.springframework.samples.petclinic.service.OwnerService;
-import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedBookingException;
 import org.springframework.samples.petclinic.service.exceptions.NoRoomsAvailableException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,15 +29,13 @@ public class BookingController {
 
 	
 	private final BookingService bookingService;
-	private final PetService petService;
 	private final OwnerService ownerService;
 	private static final String VISTA_EDICION_BOOKING= "bookings/createOrUpdateBookingForm";
 	
 	@Autowired
-	public BookingController(final BookingService bookingService, final PetService petService, final OwnerService ownerService) {
+	public BookingController(final BookingService bookingService, final OwnerService ownerService) {
 
 		this.bookingService = bookingService;
-		this.petService = petService;
 		this.ownerService = ownerService;
 	}			
 	

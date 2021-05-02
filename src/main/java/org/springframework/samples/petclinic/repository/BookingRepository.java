@@ -26,7 +26,6 @@ public interface BookingRepository extends CrudRepository<Booking, Integer>{
 	@Query("DELETE FROM Booking booking WHERE booking.id =:bookingId")
 	public void deleteById(@Param("bookingId")int bookingId);
 	
-	//Validación
 	@Query("SELECT p.bookings FROM Pet p where p.id=:petId")
 	Collection<Booking> findBookingsByPetId(@Param(value = "petId") int petId) ;
 	

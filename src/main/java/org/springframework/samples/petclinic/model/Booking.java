@@ -16,13 +16,16 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 
 @Entity
 @Table(name = "bookings")
-public @Data class Booking extends BaseEntity{
+@Getter
+@Setter
+public class Booking extends BaseEntity{
 
 	@NotNull
 	@FutureOrPresent
