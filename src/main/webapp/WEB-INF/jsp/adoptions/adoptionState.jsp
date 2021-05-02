@@ -7,22 +7,22 @@
 
 <petclinic:layout pageName="adoptions">
 	<div class="col-sm-offset-11">
-			<a href="<spring:url value="/adoptions/allAdoptionsList" htmlEscape="true" />">
-			<button class="btn btn-default" type="submit"><fmt:message key="label.adoptionList.allAdoptions"/></button>
+			<a href="<spring:url value="${alternativa}" htmlEscape="true" />">
+			<button class="btn btn-default" type="submit"><c:out value = "${boton}" /></button>
 			</a>
 	</div>
-    <h2><fmt:message key="label.adoption"/></h2>
+    <h2> <c:out value="${mensaje}"/></h2>
 
     <table id="adoptionsTable" class="table table-striped">
         <thead>
         <tr style = "background-color: #f1f1f1">
 
-            <th><fmt:message key="label.adoptionList.owner"/></th>
-            <th><fmt:message key="label.adoptionList.possibleOwner"/></th>
-            <th><fmt:message key="label.adoptionList.description"/></th>
-            <th><fmt:message key="label.adoptionList.pet"/></th>
-            <th><fmt:message key="label.adoptionList.adoptionStateType"/></th>
-            <th><fmt:message key="label.adoptionList.actions"/></th>
+            <th>Dueño</th>
+            <th>Dueño posible</th>
+            <th>Descripción</th>
+            <th>Mascota</th>
+            <th>Estado de la adopción</th>
+            <th>Acciones</th>
 
           <%--  <th>Actions</th> --%>
 
@@ -61,4 +61,6 @@
         </c:forEach>
         </tbody>
     </table>
+    
+    
 </petclinic:layout> 

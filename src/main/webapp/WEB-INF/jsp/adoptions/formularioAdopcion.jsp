@@ -9,12 +9,12 @@
     
     <jsp:body>
 	   
-	    <h2><fmt:message key="label.adoption.formTitle"/></h2>
+	    <h2>Formulario de adopción</h2>
 	    
 	    <form:form modelAttribute="adoption" class="form-horizontal">
 	        <div class="form-group has-feedback">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><fmt:message key="label.adoption.owner"/></label>
+                    <label class="col-sm-2 control-label">Dueño</label>
                     <div class="col-sm-10">
                         <c:out value="${originalOwner}"/>
                     </div>
@@ -22,7 +22,7 @@
 	        </div>
 	        <div class="form-group has-feedback">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><fmt:message key="label.adoption.newOwner"/></label>
+                    <label class="col-sm-2 control-label">Nuevo dueño</label>
                     <div class="col-sm-10">
                         <c:out value="${possibleOwner}"/>
                     </div>
@@ -33,7 +33,7 @@
 	        <petclinic:inputField label="Description" name="description"/>
 	        <div class="form-group">
 	            <div class="col-sm-offset-2 col-sm-10">
-	            	<button class="btn btn-default" type="submit"><fmt:message key="label.adoption.send"/></button>
+	            	<button class="btn btn-default" type="submit">Enviar formulario</button>
 	            </div>
 	        </div>
 	    </form:form>

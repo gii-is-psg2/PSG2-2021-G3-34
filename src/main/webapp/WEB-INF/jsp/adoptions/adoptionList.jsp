@@ -6,18 +6,22 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
 <petclinic:layout pageName="adoptions">
+	<div class="col-sm-offset-11">
+			<a href="<spring:url value="/adoptions/pendingAdoptionsList" htmlEscape="true" />">
+			<button class="btn btn-default" type="submit">Ver aplicaciones de adopción pendientes</button>
+			</a>
+	</div>
 	<h2>
-		<fmt:message key="label.adoption" />
+		Mascotas en adopción
 	</h2>
-
 	<table id="adoptionsTable" class="table table-striped">
 		<thead>
 			<tr style="background-color: #f1f1f1">
 
-				<th><fmt:message key="label.adoptionList.owner" /></th>
-				<th><fmt:message key="label.adoptionList.petType" /></th>
-				<th><fmt:message key="label.adoptionList.pet" /></th>
-				<th><fmt:message key="label.adoptionList.adoption" /></th>
+				<th>Dueño</th>
+				<th>Tipo de mascota</th>
+				<th>Mascota</th>
+				<th>Adopcion</th>
 
 				<%--  <th>Actions</th> --%>
 
@@ -36,8 +40,7 @@
 								<spring:param name="petId" value="${pet.id}" />
 							</spring:url>
 							<a href="${fn:escapeXml(applicationFormUrl)}"
-								class="btn btn-default"><fmt:message
-									key="label.adoption.formTitle" /></a>
+								class="btn btn-default">Formulario</a>
 						</c:if></td>
 				</tr>
 			</c:forEach>

@@ -84,7 +84,7 @@ public class PetService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Iterable<Pet> findPetsInAdoption(){
+	public Collection<Pet> findPetsInAdoption(){
 		return petRepository.findPetsInAdoption();
 	}	
 

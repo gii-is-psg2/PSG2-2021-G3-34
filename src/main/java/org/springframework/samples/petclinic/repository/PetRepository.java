@@ -71,9 +71,5 @@ public interface PetRepository extends  Repository<Pet, Integer>{
 	Collection<Pet> findPetsInAdoption();
 
 	
-	
-	
-
-	
 
 }

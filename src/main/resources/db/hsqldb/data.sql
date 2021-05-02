@@ -82,5 +82,6 @@ INSERT INTO bookings VALUES(10, '2021-12-28', 1, '2021-12-27', 5);
 INSERT INTO bookings VALUES(11, '2021-10-11', 3, '2021-10-10', 5);
 
 
-INSERT INTO adoptions(owner,possible_owner,description,adoption_state_type, pet_id) VALUES ('owner1','owner2','I am a dog',2,3);
+INSERT INTO adoptions(owner,possible_owner,description,adoption_state_type, pet_id) VALUES ('owner1','owner2','I am a dog',0,2);
+INSERT INTO adoptions(owner,possible_owner,description,adoption_state_type, pet_id) VALUES ('owner1','owner2','I am a dog',1,3);
 INSERT INTO adoptions(owner,possible_owner,description, adoption_state_type, pet_id) VALUES ('owner1','owner2','I am a cat',2,1);

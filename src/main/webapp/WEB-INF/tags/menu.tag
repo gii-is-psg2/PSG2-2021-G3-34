@@ -41,10 +41,10 @@
 				</petclinic:menuItem>
 				
 				<sec:authorize access="hasAuthority('owner')">
-				<petclinic:menuItem active="${name eq 'adoptions'}" url="/adoptions"
+				<petclinic:menuItem active="${name eq 'adoptions'}" url="/adoptions/"
 					title="adoptions">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span><fmt:message key="label.menu.adoptions"/></span>
+					<span>Adopciones</span>
 				</petclinic:menuItem>
 				</sec:authorize>
 				
@@ -52,7 +52,7 @@
 				<petclinic:menuItem active="${name eq 'adoptions'}" url="/adoptions/pendingAdoptionsList"
 					title="adoptions">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span><fmt:message key="label.menu.adoptions"/></span>
+					<span>Adopciones</span>
 				</petclinic:menuItem>
 				</sec:authorize>
 				
