@@ -86,7 +86,6 @@ public class BookingController {
 					i++;
 				}
 				booking.setPet(optPet);
-				System.out.println(booking);
 				this.bookingService.saveBooking(booking);
 				modelMap.addAttribute("messageSuccess", "Reserva creada con exito");
 				redirectAttributes.addFlashAttribute("message", String.format("La reserva para la mascota '%s' ha sido añadida.", owner.getFirstName()));

@@ -60,9 +60,6 @@ public class VetController {
 
 	@GetMapping(value = { "/vets" })
 	public String showVetList(Map<String, Object> model) {
-		// Here we are returning an object of type 'Vets' rather than a collection of Vet
-		// objects
-		// so it is simpler for Object-Xml mapping
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.vetService.findVets());
 		model.put("vets", vets);
@@ -71,9 +68,6 @@ public class VetController {
 
 	@GetMapping(value = { "/vets.xml"})
 	public @ResponseBody Vets showResourcesVetList() {
-		// Here we are returning an object of type 'Vets' rather than a collection of Vet
-		// objects
-		// so it is simpler for JSon/Object mapping
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.vetService.findVets());
 		return vets;
@@ -89,23 +83,19 @@ public class VetController {
 	public String crearVeterinario(ModelMap modelmap) {
 		String vista = "vets/createOrUpdateVetForm";
 		modelmap.addAttribute("vet", new Vet());
-		//List<String> specialties = vetService.findSpecialties().stream().map(x->x.getName()).collect(Collectors.toList());
-		//modelmap.addAttribute("specialtiesnames", specialties);
 		return vista;
 	}
 	
 	@PostMapping(path="/vets/save")
     public String guardarAutor(@Valid Vet vet, BindingResult result, ModelMap modelmap, Principal principal) {
-        String vista = "vets/createOrUpdateVetForm";
         if(result.hasErrors()) {
             modelmap.addAttribute("vet", vet);
             return "autores/editAutor";
         }else {
             vetService.save(vet);
             modelmap.addAttribute("message", "Veterinario guardado correctamente");
-            vista = showVetList(modelmap);
+            return showVetList(modelmap);
         }
-        return vista;
     }
 	
 	   @PostMapping(value = "/vets/{vetId}/edit")
