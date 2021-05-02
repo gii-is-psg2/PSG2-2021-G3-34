@@ -46,7 +46,7 @@ import java.util.Set;
  * @author Ken Krebs
  * @author Juergen Hoeller
  * @author Sam Brannen
- */
+ */ 
 @Entity
 @Table(name = "pets")
 public class Pet extends NamedEntity {

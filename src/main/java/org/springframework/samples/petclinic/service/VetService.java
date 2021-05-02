@@ -42,7 +42,7 @@ import org.springframework.util.StringUtils;
  * @author Michael Isvy
  */
 @Service
-public class VetService {
+public class VetService { 
 
 	private VetRepository vetRepository;
 

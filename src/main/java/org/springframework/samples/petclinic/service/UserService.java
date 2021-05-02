@@ -33,7 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Mostly used as a facade for all Petclinic controllers Also a placeholder
  * for @Transactional and @Cacheable annotations
  *
- * @author Michael Isvy
+ * @author Michael Isvy  
  */
 @Service
 public class UserService {

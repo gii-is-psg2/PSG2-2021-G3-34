@@ -35,12 +35,12 @@ import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNam
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-
+ 
 /**
  * Mostly used as a facade for all Petclinic controllers Also a placeholder
  * for @Transactional and @Cacheable annotations
  *
- * @author Michael Isvy
+ * @author Michael Isvy 
  */
 @Service
 public class OwnerService {
