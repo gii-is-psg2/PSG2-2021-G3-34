@@ -31,7 +31,7 @@
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span>Encontrar Dueños</span>
+					<span>Encontrar DueÃ±os</span>
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
@@ -39,6 +39,21 @@
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Veterinarios</span>
 				</petclinic:menuItem>
+				
+
+				<sec:authorize access="hasAuthority('owner')">
+				<petclinic:menuItem active="${name eq 'adoptions'}" url="/adoptions/"
+					title="adoptions">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Adopciones</span>
+				</petclinic:menuItem>
+				</sec:authorize>
+				
+
+				<petclinic:menuItem active="${name eq 'causes'}" url="/causes" title="causes">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    <span>Causes</span>
+                </petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
 					title="trigger a RuntimeException to see how it is handled">
@@ -58,7 +73,7 @@
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> 
+						data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span>Â 
 							<strong><sec:authentication property="name" /></strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
@@ -77,7 +92,7 @@
 											</p>
 											<p class="text-left">
 												<a href="<c:url value="/logout" />"
-													class="btn btn-primary btn-block btn-sm">Cerrar Sesión</a>
+													class="btn btn-primary btn-block btn-sm">Cerrar SesiÃ³n</a>
 											</p>
 										</div>
 									</div>
