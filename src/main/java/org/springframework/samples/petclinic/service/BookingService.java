@@ -1,11 +1,14 @@
 package org.springframework.samples.petclinic.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Booking;
 import org.springframework.samples.petclinic.repository.BookingRepository;
+import org.springframework.samples.petclinic.service.exceptions.DuplicatedBookingException;
 import org.springframework.samples.petclinic.service.exceptions.NoRoomsAvailableException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,21 +31,26 @@ public class BookingService {
 	}
 
 	@Transactional
-	public void saveBooking(final Booking booking) throws NoRoomsAvailableException {
+	public void saveBooking(final Booking booking) throws NoRoomsAvailableException, DuplicatedBookingException {
 		Collection<Integer> usedRooms = this.bookingRepository.findUsedRooms(booking.getStartDate(), booking.getEndDate());
-		if (usedRooms.size() < 20) {
-			Boolean aux = true;
-			int possibleRoom = 1;
-			while (aux) {
-				if (usedRooms.contains(possibleRoom))
-					possibleRoom += 1;
-				else
-					aux = false;
-			}
-			booking.setRoom(possibleRoom);
-			this.bookingRepository.save(booking);
-		} else
+		if (usedRooms.size() >= 20) {
 			throw new NoRoomsAvailableException();
+		} if (bookingRepository.findAll().stream().anyMatch(x->((!booking.getStartDate().isAfter(x.getEndDate()) && 
+				!booking.getStartDate().isBefore(x.getStartDate())) || (!booking.getEndDate().isAfter(x.getEndDate()) && 
+				!booking.getEndDate().isBefore(x.getStartDate()))) && x.getPet() == booking.getPet())) {
+			throw new DuplicatedBookingException();
+		}
+		Boolean aux = true;
+		int possibleRoom = 1;
+		while (aux) {
+			if (usedRooms.contains(possibleRoom))
+				possibleRoom += 1;
+			else
+				aux = false;
+		}
+		booking.setRoom(possibleRoom);
+		this.bookingRepository.save(booking);
+		
 	}
 
 	@Transactional
@@ -70,5 +78,14 @@ public class BookingService {
 
 		return this.bookingRepository.findUsedRooms(startDate, endDate);
 	}
+	
+	//Validacion
+	
+	public Collection<Booking> findBookingsByPetId(int petId) {
+		return bookingRepository.findBookingsByPetId(petId);
+	}
+
+	
+	
 
 }
