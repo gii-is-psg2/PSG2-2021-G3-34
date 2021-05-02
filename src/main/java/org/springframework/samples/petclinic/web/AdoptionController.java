@@ -88,7 +88,7 @@ public class AdoptionController {
 			@PathVariable("petId") int petId) {
 
 		Optional<User> optionalPossibleOwner = this.userService.findUser(principal.getName());
-		if (optionalPossibleOwner.isPresent()) {
+		if (!optionalPossibleOwner.isPresent()) {
 			return "redirect:/login";
 		
 		
