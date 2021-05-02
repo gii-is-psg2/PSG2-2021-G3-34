@@ -53,13 +53,13 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day 23/04/2021         |   :smiley:    |        :smiley:       |                | :smiley:       | 😐               |        -        |
 | Day 24/04/2021         |   -           |               |                |                |                |         -       |
 | Day 25/04/2021         |   -           |         :smiley:      |                |                |                |         -       |
-| Day 26/04/2021         |               |               |                |                |                |         -       |
-| Day 27/04/2021         |               |         :smiley:      |                |                |                |         -       |
-| Day 28/04/2021         |               |               |                |                |                |         -       |
-| Day 29/04/2021         |               |               |                |                |                |         -       |
-| Day 30/04/2021         |               |               |                |                |                |         :smiley:       |
-| Day 01/05/2021         |               |               |                |                |:smiley:        |         -       |
-| Day 02/05/2021         |               |               |                |                |                |                |
+| Day 26/04/2021         |   -           |               |                |                |                |         -       |
+| Day 27/04/2021         |   -           |         :smiley:      |                |                |                |         -       |
+| Day 28/04/2021         |   -           |               |                |                |                |         -       |
+| Day 29/04/2021         |   -           |               |                |                |                |         -       |
+| Day 30/04/2021         |   -           |               |                |                |                |         :smiley:       |
+| Day 01/05/2021         |   -           |               |                |                |:smiley:        |         -       |
+| Day 02/05/2021         |   :smiley:    |               |                |                |                |                |
 | Day 03/05/2021         |               |               |                |                |                |                |
 
 ...
