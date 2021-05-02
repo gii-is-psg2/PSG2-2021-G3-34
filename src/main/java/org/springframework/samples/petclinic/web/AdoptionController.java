@@ -49,7 +49,11 @@ public class AdoptionController {
 
 	@GetMapping(value="/")
 	public String adoptionList(ModelMap modelMap, Principal principal) {
-		User possibleOwner = this.userService.findUser(principal.getName()).get();
+		User possibleOwner;
+		if (this.userService.findUser(principal.getName()).isPresent())
+			possibleOwner = this.userService.findUser(principal.getName()).get();
+		else
+			return "welcome";
 		modelMap.addAttribute("possibleOwner", possibleOwner);
 
 		String view = "adoptions/adoptionList";
@@ -83,7 +87,14 @@ public class AdoptionController {
 	public String initApplyForm(Map<String, Object> model, Principal principal,
 			@PathVariable("petId") int petId) {
 
-		User possibleOwner = this.userService.findUser(principal.getName()).get();
+		User possibleOwner;
+		
+		if (this.userService.findUser(principal.getName()).isPresent())
+			possibleOwner = this.userService.findUser(principal.getName()).get();
+		else
+			return "welcome";
+		
+		
 		if (possibleOwner == null) {
 			return "redirect:/login";
 			
@@ -106,8 +117,13 @@ public class AdoptionController {
 	public String sendApplicationForm(@PathVariable("petId") int petId,@Valid Adoption adoption, BindingResult result, 
 			Map<String, Object> model, Principal principal) throws DataAccessException, DuplicatedPetNameException {
 		Pet pet = this.petService.findPetById(petId);
+		User possibleOwner;
 		
-		User possibleOwner = this.userService.findUser(principal.getName()).get();
+		if (this.userService.findUser(principal.getName()).isPresent())
+			possibleOwner = this.userService.findUser(principal.getName()).get();
+		else
+			return "welcome";
+		
 		if (result.hasErrors()) {
 			String possibleOwnerName = possibleOwner.getUsername();
 
@@ -120,7 +136,7 @@ public class AdoptionController {
 			return "/adoptions/applicationForm";
 		} else {
 			Boolean alreadyExists = adoptionService.findAdoptionByPossibleOwnerAndPet(possibleOwner.getUsername(), pet) != null;
-			if(alreadyExists){
+			if(Boolean.TRUE.equals(alreadyExists)){
 				return "/adoptions/existingAdoption";
 			}else {
 				try {
@@ -134,10 +150,7 @@ public class AdoptionController {
 					model.put("adoption",adoption);
 					return "welcome";	
 				}
-				catch (DuplicatedPetNameException e) {
-					return "/adoptions/applicationForm";
-				}
-				catch (DataAccessException e) {
+				catch (DuplicatedPetNameException|DataAccessException e) {
 					return "/adoptions/applicationForm";
 				}
 			}
