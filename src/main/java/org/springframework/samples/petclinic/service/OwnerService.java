@@ -70,6 +70,11 @@ public class OwnerService {
 		return this.ownerRepository.findByLastName(lastName);
 	}
 
+	@Transactional(readOnly = true)
+	public Owner findOwnerByUsername(String username) throws DataAccessException {
+		return ownerRepository.findByUsername(username);
+	}
+	
 	@Transactional
 	public void saveOwner(final Owner owner) throws DataAccessException {
 		//creating owner

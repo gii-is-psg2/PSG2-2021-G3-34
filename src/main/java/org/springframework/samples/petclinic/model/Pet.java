@@ -103,10 +103,21 @@ public class Pet extends NamedEntity {
 		return this.owner;
 	}
 
+
+	
 	protected void setOwner(final Owner owner) {
 		this.owner = owner;
 	}
 
+	
+	public Boolean getInAdoption() {
+		return this.inAdoption;
+	}
+	public void setInAdoption(Boolean inAdoption) {
+		this.inAdoption = inAdoption;
+	}
+
+	
 	protected Set<Visit> getVisitsInternal() {
 		if (this.visits == null) {
 			this.visits = new HashSet<>();
