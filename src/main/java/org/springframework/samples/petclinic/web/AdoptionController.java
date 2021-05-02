@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -49,12 +50,11 @@ public class AdoptionController {
 
 	@GetMapping(value="/")
 	public String adoptionList(ModelMap modelMap, Principal principal) {
-		User possibleOwner;
-		if (this.userService.findUser(principal.getName()).isPresent())
-			possibleOwner = this.userService.findUser(principal.getName()).get();
+		Optional<User> optionalPossibleOwner = this.userService.findUser(principal.getName());
+		if (optionalPossibleOwner.isPresent())
+			modelMap.addAttribute("possibleOwner", optionalPossibleOwner.get());
 		else
 			return "welcome";
-		modelMap.addAttribute("possibleOwner", possibleOwner);
 
 		String view = "adoptions/adoptionList";
 		Collection<Pet> pets = this.petService.findPetsInAdoption();
@@ -87,20 +87,14 @@ public class AdoptionController {
 	public String initApplyForm(Map<String, Object> model, Principal principal,
 			@PathVariable("petId") int petId) {
 
-		User possibleOwner;
-		
-		if (this.userService.findUser(principal.getName()).isPresent())
-			possibleOwner = this.userService.findUser(principal.getName()).get();
-		else
-			return "welcome";
-		
-		
-		if (possibleOwner == null) {
+		Optional<User> optionalPossibleOwner = this.userService.findUser(principal.getName());
+		if (!optionalPossibleOwner.isPresent()) {
 			return "redirect:/login";
-			
+		
+		
 		} else {
 
-			String possibleOwnerName = possibleOwner.getUsername();
+			String possibleOwnerName = optionalPossibleOwner.get().getUsername();
 
 			Owner owner = this.petService.findPetById(petId).getOwner();
 			String ownerName = owner.getUser().getUsername();
@@ -118,9 +112,9 @@ public class AdoptionController {
 			Map<String, Object> model, Principal principal) throws DataAccessException, DuplicatedPetNameException {
 		Pet pet = this.petService.findPetById(petId);
 		User possibleOwner;
-		
-		if (this.userService.findUser(principal.getName()).isPresent())
-			possibleOwner = this.userService.findUser(principal.getName()).get();
+		Optional<User> optionalPossibleOwner = this.userService.findUser(principal.getName());
+		if (optionalPossibleOwner.isPresent())
+			possibleOwner = optionalPossibleOwner.get();
 		else
 			return "welcome";
 		
