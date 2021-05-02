@@ -35,16 +35,16 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day           | Isabel    | Fernando  | Pablo     | Mariano     | Miguel     | Javier     |
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | -------------  |
 | Day 07/04/2021         | :smile:       |       :neutral_face:        |:smile:         | :smiley:       |                | -               |
-| Day 08/04/2021         |   -           |      -         |  -             |      -         |                |    -            |
+| Day 08/04/2021         |   -           |      -         |  -             |      -         |   -             |    -            |
 | Day 09/04/2021         |   -           |      -         |  -             |      -         | :smile:               |   :smiley:             |
-| Day 10/04/2021         |   -           |      -         |  -             |      -         |                |      -          |
-| Day 11/04/2021         |   -           |:neutral_face:  |  -             |      -         |                |       -         |
-| Day 12/04/2021         |  :smiley:     |      -         |  -             |      -         |                |       -         |
+| Day 10/04/2021         |   -           |      -         |  -             |      -         |   -             |      -          |
+| Day 11/04/2021         |   -           |:neutral_face:  |  -             |      -         |   -             |       -         |
+| Day 12/04/2021         |  :smiley:     |      -         |  -             |      -         |   -             |       -         |
 | Day 13/04/2021         |   -           |      -         |  -             |      -         |:smile:                |       -         |
-| Day 14/04/2021         |   -           |      -         |:neutral_face:  |  :smiley:      |                | -               |
-| Day 15/04/2021         |   -           |      -         |  -             | :neutral_face: |                |    -            |
+| Day 14/04/2021         |   -           |      -         |:neutral_face:  |  :smiley:      |   -             | -               |
+| Day 15/04/2021         |   -           |      -         |  -             | :neutral_face: |   -             |    -            |
 | Day 16/04/2021         |:neutral_face: |      -         |  -             |      -         |:smile:                |    -            |
-| Day 17/04/2021         |   -           |      -         |  -             |      -         |                |        :smiley:       |
+| Day 17/04/2021         |   -           |      -         |  -             |      -         |   -             |        :smiley:       |
 | Day 18/04/2021         |   -           |     :neutral_face:          |:smile:         | :neutral_face: |                |        -        |
 | Day 19/04/2021         |   -           |      :neutral_face:         |  -             |      -         | 😐               |        -        |
 | Day 20/04/2021         |   -           |      -         |  -             | :smiley:       |     -           |        -        |
