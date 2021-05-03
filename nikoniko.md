@@ -59,7 +59,7 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day 29/04/2021         |   -           |      -         |  -              |   -             |   -             |         -       |
 | Day 30/04/2021         |   -           |      -         |  -              |   -             |   -             |         :smiley:       |
 | Day 01/05/2021         |   -           |      -         |  -              |   -             |:smiley:        |         -       |
-| Day 02/05/2021         |   :smiley:    |               |                |     :smile:    |      :smile:   |                |
-| Day 03/05/2021         |   :smiley:    |               |                |                |                |                |
+| Day 02/05/2021         |   :smiley:    |      :smiley:         |                |     :smile:    |      :smile:   |                |
+| Day 03/05/2021         |   :smiley:    |      :smiley:         |                |                |                |                |
 
 ...
