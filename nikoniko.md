@@ -34,7 +34,7 @@ In the retrospective meeting, the team has a discussion about those results.
 
 | Day           | Isabel    | Fernando  | Pablo     | Mariano     | Miguel     | Javier     |
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | -------------  |
-| Day 07/04/2021         | :smile:       |       :neutral_face:        |:smiley:         | :smiley:       |                | -               |
+| Day 07/04/2021         | :smile:       |       :neutral_face:        |:smiley:         | :smiley:       |    -            | -               |
 | Day 08/04/2021         |   -           |      -         |  -             |      -         |   -             |    -            |
 | Day 09/04/2021         |   -           |      -         |  -             |      -         | :smile:               |   :smiley:             |
 | Day 10/04/2021         |   -           |      -         |  -             |      -         |   -             |      -          |
