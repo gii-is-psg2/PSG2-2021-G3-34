@@ -34,7 +34,7 @@ public class Cause extends NamedEntity{
 	
 	@NotNull
 	@Column(name = "budged_target")
-	@Min(0)
+	@Min(1)
 	private Double budgetTarget;
 	
 	@NotBlank
