@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <petclinic:layout pageName="vets">
     <h2>Veterinarios</h2>
@@ -31,7 +32,9 @@
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
 
-                 <td><a class="btn btn-default" href="/vets/${vet.id}/delete">Eliminar</a></td>
+
+                <sec:authorize access="hasAuthority('admin')">
+                <td><a class="btn btn-default" href="/vets/${vet.id}/delete">Eliminar</a></td>
 
                 <td>
 						<a href="<spring:url value="vets/{vetId}/edit" >
@@ -39,7 +42,9 @@
                         </spring:url>" class="btn btn-default">
                     Editar</a>
                 </td>
+				</sec:authorize>
 
+                </sec:authorize>
             </tr>
         </c:forEach>
         </tbody>
