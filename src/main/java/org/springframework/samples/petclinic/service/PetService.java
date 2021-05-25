@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.Comparator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -50,6 +51,7 @@ public class PetService {
 		this.visitRepository = visitRepository;
 	}
 
+	
 	@Transactional(readOnly = true)
 	public Collection<PetType> findPetTypes() throws DataAccessException {
 		return petRepository.findPetTypes();
@@ -65,12 +67,13 @@ public class PetService {
 		return petRepository.findById(id);
 	}
 
-	@Transactional(rollbackFor = DuplicatedPetNameException.class)
-	public void savePet(Pet pet) throws DataAccessException, DuplicatedPetNameException {
-			Pet otherPet=pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
-            if (StringUtils.hasLength(pet.getName()) &&  (otherPet!= null && !otherPet.getId().equals(pet.getId()))) {            	
-            	throw new DuplicatedPetNameException();
-            }else
+	
+	public void savePet(Pet pet) throws DataAccessException {
+		
+		/*Pet otherPet=pet.getOwner().getPetwithIdDifferent(pet.getName(), pet.getId());
+        if (StringUtils.hasLength(pet.getName()) &&  (otherPet!= null && !otherPet.getId().equals(pet.getId()))) {            	
+        	throw new DuplicatedPetNameException();
+        }else*/
                 petRepository.save(pet);                
 	}
 

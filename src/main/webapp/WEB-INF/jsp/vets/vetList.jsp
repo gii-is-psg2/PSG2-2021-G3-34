@@ -32,6 +32,7 @@
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
 
+
 				<sec:authorize access="hasAuthority('admin')">
                 <td><a class="btn btn-default" href="/vets/${vet.id}/delete">Eliminar</a></td>
 
@@ -41,8 +42,8 @@
                         </spring:url>" class="btn btn-default">
                     Editar</a>
                 </td>
-                </sec:authorize>
 
+                </sec:authorize>
             </tr>
         </c:forEach>
         </tbody>
