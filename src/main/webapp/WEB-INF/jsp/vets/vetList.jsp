@@ -32,6 +32,7 @@
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
 
+
                 <sec:authorize access="hasAuthority('admin')">
                 <td><a class="btn btn-default" href="/vets/${vet.id}/delete">Eliminar</a></td>
 
@@ -43,6 +44,7 @@
                 </td>
 				</sec:authorize>
 
+                </sec:authorize>
             </tr>
         </c:forEach>
         </tbody>
