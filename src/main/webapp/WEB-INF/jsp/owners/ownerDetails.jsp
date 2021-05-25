@@ -8,7 +8,9 @@
 
 <petclinic:layout pageName="owners">
 
-    <h2>Owner Information</h2>
+	<c:out value="${message}"/>
+
+    <h2>Informacion del dueño</h2>
 
 
     <table class="table table-striped">
