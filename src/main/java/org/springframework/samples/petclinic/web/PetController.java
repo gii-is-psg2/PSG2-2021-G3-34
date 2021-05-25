@@ -76,12 +76,13 @@ public class PetController {
 		else {
                     try{
                     	owner.addPet(pet);
+                    	model.addAttribute("message", "Mascota creada correctamente");
                     	this.petService.savePet(pet);
                     }catch(DuplicatedPetNameException ex){
                         result.rejectValue("name", "duplicate", "already exists");
                         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
                     }
-                    return "redirect:/owners/{ownerId}";
+            		return "owners/ownerDetails";
 		}
 	}
 
@@ -89,6 +90,7 @@ public class PetController {
 	public String initUpdateForm(@PathVariable("petId") int petId, ModelMap model) {
 		Pet pet = this.petService.findPetById(petId);
 		model.put("pet", pet);
+		
 		return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 	}
 
@@ -112,12 +114,14 @@ public class PetController {
                         Pet petToUpdate=this.petService.findPetById(petId);
 			BeanUtils.copyProperties(pet, petToUpdate, "id","owner","visits");                                                                                  
                     try {                    
-                        this.petService.savePet(petToUpdate);                    
+                        this.petService.savePet(petToUpdate);  
+                    	model.addAttribute("message", "Mascota editada correctamente");
+
                     } catch (DuplicatedPetNameException ex) {
                         result.rejectValue("name", "duplicate", "already exists");
                         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
                     }
-			return "redirect:/owners/{ownerId}";
+            		return "owners/ownerDetails";
 		}
 	}
         
@@ -127,7 +131,9 @@ public class PetController {
         	Pet pet = this.petService.findPetById(petId);
         	ow.removePet(pet);
     		this.petService.deletePet(pet.getId());
-    		return "redirect:/owners/{ownerId}";
+        	model.addAttribute("message", "Mascota borrada correctamente");
+
+    		return "owners/ownerDetails";
     	}
 
 }

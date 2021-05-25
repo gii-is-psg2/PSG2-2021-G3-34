@@ -8,6 +8,8 @@
 
 <petclinic:layout pageName="owners">
 
+	<c:out value="${message}"></c:out>
+
     <h2>Owner Information</h2>
 
 
