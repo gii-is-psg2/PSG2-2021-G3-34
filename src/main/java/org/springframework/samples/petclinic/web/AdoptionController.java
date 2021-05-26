@@ -127,7 +127,7 @@ public class AdoptionController {
 			model.put("possibleOwner", possibleOwnerName);
 			model.put("originalOwner", ownerName);
 			
-			return "/adoptions/applicationForm";
+			return "adoptions/formularioAdopcion";
 		} else {
 			Boolean alreadyExists = adoptionService.findAdoptionByPossibleOwnerAndPet(possibleOwner.getUsername(), pet) != null;
 			if(Boolean.TRUE.equals(alreadyExists)){
@@ -146,7 +146,7 @@ public class AdoptionController {
 					return "welcome";	
 				}
 				catch (DuplicatedPetNameException|DataAccessException e) {
-					return "/adoptions/applicationForm";
+					return "/adoptions/formularioAdopcion";
 				}
 			}
 		}
