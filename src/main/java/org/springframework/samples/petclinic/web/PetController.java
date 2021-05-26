@@ -84,9 +84,18 @@ public class PetController {
 			return "owners/ownerDetails";
 		}
 		else {
-            owner.addPet(pet);
-                this.petService.savePet(pet);
-            return "redirect:/owners/{ownerId}";
+
+                    try{
+                    	owner.addPet(pet);
+                    	model.addAttribute("message", "Mascota creada correctamente");
+                    	this.petService.savePet(pet);
+                    }catch(DuplicatedPetNameException ex){
+                        result.rejectValue("name", "duplicate", "already exists");
+                        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+                    }
+            		return "owners/ownerDetails";
+
+
 		}
 	}
 
@@ -98,6 +107,7 @@ public class PetController {
 			return "owners/ownerDetails";
 		}
 		model.put("pet", pet);
+		
 		return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 	}
 
@@ -124,9 +134,18 @@ public class PetController {
 		else {
             Pet petToUpdate=this.petService.findPetById(petId);
 			BeanUtils.copyProperties(pet, petToUpdate, "id","owner","visits");                                                                                  
-            this.petService.savePet(petToUpdate);                    
-                   
-			return "redirect:/owners/{ownerId}";
+
+                    try {                    
+                        this.petService.savePet(petToUpdate);  
+                    	model.addAttribute("message", "Mascota editada correctamente");
+
+                    } catch (DuplicatedPetNameException ex) {
+                        result.rejectValue("name", "duplicate", "already exists");
+                        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+                    }
+            		return "owners/ownerDetails";
+
+           
 		}
 	}
         
@@ -140,7 +159,9 @@ public class PetController {
     		}
         	ow.removePet(pet);
     		this.petService.deletePet(pet.getId());
-    		return "redirect:/owners/{ownerId}";
+        	model.addAttribute("message", "Mascota borrada correctamente");
+
+    		return "owners/ownerDetails";
     	}
 
 }
