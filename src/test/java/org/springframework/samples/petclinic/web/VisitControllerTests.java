@@ -61,8 +61,8 @@ class VisitControllerTests {
 		mockMvc.perform(post("/owners/*/pets/{petId}/visits/new", TEST_PET_ID).param("name", "George")
 							.with(csrf())
 							.param("description", "Visit Description"))                                
-                .andExpect(status().is3xxRedirection())
-				.andExpect(view().name("redirect:/owners/{ownerId}"));
+                .andExpect(status().isOk())
+				.andExpect(view().name("owners/ownerDetails"));
 	}
 
 	@WithMockUser(value = "spring")
