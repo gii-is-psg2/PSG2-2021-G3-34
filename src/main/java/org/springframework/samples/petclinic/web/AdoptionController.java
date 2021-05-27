@@ -109,7 +109,7 @@ public class AdoptionController {
 
 	@PostMapping(value = "/{petId}/applicationForm")
 	public String sendApplicationForm(@PathVariable("petId") int petId,@Valid Adoption adoption, BindingResult result, 
-			Map<String, Object> model, Principal principal, ModelMap modelMap) throws DataAccessException, DuplicatedPetNameException {
+			Map<String, Object> model, Principal principal, ModelMap modelMap) throws DataAccessException {
 		Pet pet = this.petService.findPetById(petId);
 		User possibleOwner;
 		Optional<User> optionalPossibleOwner = this.userService.findUser(principal.getName());
@@ -133,21 +133,17 @@ public class AdoptionController {
 			if(Boolean.TRUE.equals(alreadyExists)){
 				return "/adoptions/existingAdoption";
 			}else {
-				try {
-					adoption.setPet(pet);
-					modelMap.addAttribute("message", "registro correcto de la peticion");
-					adoption.setAdoptionStateType(AdoptionStateType.PENDING);
-					pet.addAdoption(adoption);
-					
-					this.adoptionService.saveAdoption(adoption);
-					this.petService.savePet(pet);
+				adoption.setPet(pet);
+				modelMap.addAttribute("message", "registro correcto de la peticion");
+				adoption.setAdoptionStateType(AdoptionStateType.PENDING);
+				pet.addAdoption(adoption);
+				
+				this.adoptionService.saveAdoption(adoption);
+				this.petService.savePet(pet);
 
-					model.put("adoption",adoption);
-					return "welcome";	
-				}
-				catch (DuplicatedPetNameException|DataAccessException e) {
-					return "/adoptions/formularioAdopcion";
-				}
+				model.put("adoption",adoption);
+				return "welcome";	
+				
 			}
 		}
 	}
