@@ -115,11 +115,8 @@ class PetServiceTests {
 		pet7.addVisit(visit);
 		visit.setDescription("test");
 		this.petService.saveVisit(visit);
-            try {
-                this.petService.savePet(pet7);
-            } catch (DuplicatedPetNameException ex) {
-                Logger.getLogger(PetServiceTests.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        this.petService.savePet(pet7);
+            
 
 		pet7 = this.petService.findPetById(7);
 		assertThat(pet7.getVisits().size()).isEqualTo(found + 1);

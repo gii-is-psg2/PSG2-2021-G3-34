@@ -14,7 +14,6 @@ import javax.validation.Valid;
 
 import java.security.Principal;
 import java.util.Collection;
-import java.util.Comparator;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.samples.petclinic.service.OwnerService;
@@ -84,16 +83,11 @@ public class PetController {
 			return "owners/ownerDetails";
 		}
 		else {
-
-                    try{
-                    	owner.addPet(pet);
-                    	model.addAttribute("message", "Mascota creada correctamente");
-                    	this.petService.savePet(pet);
-                    }catch(DuplicatedPetNameException ex){
-                        result.rejectValue("name", "duplicate", "already exists");
-                        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
-                    }
-            		return "owners/ownerDetails";
+			
+			owner.addPet(pet);
+            model.addAttribute("message", "Mascota creada correctamente");
+            this.petService.savePet(pet);
+            return "owners/ownerDetails";
 
 
 		}
@@ -106,8 +100,7 @@ public class PetController {
 			model.addAttribute("message", "No puede actualizar una mascota que no es suya");
 			return "owners/ownerDetails";
 		}
-		model.put("pet", pet);
-		
+		model.put("pet", pet);		
 		return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 	}
 
@@ -134,16 +127,11 @@ public class PetController {
 		else {
             Pet petToUpdate=this.petService.findPetById(petId);
 			BeanUtils.copyProperties(pet, petToUpdate, "id","owner","visits");                                                                                  
+                    
+            this.petService.savePet(petToUpdate);  
+            model.addAttribute("message", "Mascota editada correctamente");
 
-                    try {                    
-                        this.petService.savePet(petToUpdate);  
-                    	model.addAttribute("message", "Mascota editada correctamente");
-
-                    } catch (DuplicatedPetNameException ex) {
-                        result.rejectValue("name", "duplicate", "already exists");
-                        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
-                    }
-            		return "owners/ownerDetails";
+            return "owners/ownerDetails";
 
            
 		}
