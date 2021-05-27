@@ -100,8 +100,7 @@ public class PetController {
 			model.addAttribute("message", "No puede actualizar una mascota que no es suya");
 			return "owners/ownerDetails";
 		}
-		model.put("pet", pet);
-		
+		model.put("pet", pet);		
 		return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 	}
 
