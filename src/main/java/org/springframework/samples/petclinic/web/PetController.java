@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.security.Principal;
 import java.util.Collection;
+import java.util.Comparator;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.samples.petclinic.service.PetService;
@@ -60,35 +63,51 @@ public class PetController {
 	}
 
 	@GetMapping(value = "/pets/new")
-	public String initCreationForm(Owner owner, ModelMap model) {
+	public String initCreationForm(Owner owner, ModelMap model, Principal principal) {
 		Pet pet = new Pet();
-		owner.addPet(pet);
+		if (!owner.getUser().getUsername().equals(principal.getName())) {
+			model.addAttribute("message", "No puede añadir una mascota a otro dueño");
+			return "owners/ownerDetails";
+		}	
 		model.put("pet", pet);
 		return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 	}
 
 	@PostMapping(value = "/pets/new")
-	public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model) {		
+	public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model, Principal principal) {	
 		if (result.hasErrors()) {
 			model.put("pet", pet);
 			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 		}
+		else if (!owner.getUser().getUsername().equals(principal.getName())) {
+			model.addAttribute("message", "No puede añadir una mascota a otro dueño");
+			return "owners/ownerDetails";
+		}
 		else {
+
                     try{
                     	owner.addPet(pet);
+                    	model.addAttribute("message", "Mascota creada correctamente");
                     	this.petService.savePet(pet);
                     }catch(DuplicatedPetNameException ex){
                         result.rejectValue("name", "duplicate", "already exists");
                         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
                     }
-                    return "redirect:/owners/{ownerId}";
+            		return "owners/ownerDetails";
+
+
 		}
 	}
 
 	@GetMapping(value = "/pets/{petId}/edit")
-	public String initUpdateForm(@PathVariable("petId") int petId, ModelMap model) {
+	public String initUpdateForm(@PathVariable("petId") int petId, ModelMap model, Principal principal) {
 		Pet pet = this.petService.findPetById(petId);
+		if (!pet.getOwner().getUser().getUsername().equals(principal.getName())) {
+			model.addAttribute("message", "No puede actualizar una mascota que no es suya");
+			return "owners/ownerDetails";
+		}
 		model.put("pet", pet);
+		
 		return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 	}
 
@@ -103,31 +122,46 @@ public class PetController {
      * @return
      */
         @PostMapping(value = "/pets/{petId}/edit")
-	public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner,@PathVariable("petId") int petId, ModelMap model) {
+	public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner,@PathVariable("petId") int petId, ModelMap model, Principal principal) {
 		if (result.hasErrors()) {
 			model.put("pet", pet);
 			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 		}
+		else if (!owner.getUser().getUsername().equals(principal.getName())) {
+			model.addAttribute("message", "No puede actualizar una mascota que no es suya");
+			return "owners/ownerDetails";
+		}
 		else {
-                        Pet petToUpdate=this.petService.findPetById(petId);
+            Pet petToUpdate=this.petService.findPetById(petId);
 			BeanUtils.copyProperties(pet, petToUpdate, "id","owner","visits");                                                                                  
+
                     try {                    
-                        this.petService.savePet(petToUpdate);                    
+                        this.petService.savePet(petToUpdate);  
+                    	model.addAttribute("message", "Mascota editada correctamente");
+
                     } catch (DuplicatedPetNameException ex) {
                         result.rejectValue("name", "duplicate", "already exists");
                         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
                     }
-			return "redirect:/owners/{ownerId}";
+            		return "owners/ownerDetails";
+
+           
 		}
 	}
         
         @GetMapping(value = { "/pets/{petId}/delete"})
-    	public String delete(@PathVariable int petId, @PathVariable("ownerId") int ownerId, ModelMap model) {
+    	public String delete(@PathVariable int petId, @PathVariable("ownerId") int ownerId, ModelMap model, Principal principal) {
     		Owner ow = this.ownerService.findOwnerById(ownerId);
         	Pet pet = this.petService.findPetById(petId);
+    		if (!ow.getUser().getUsername().equals(principal.getName())) {
+    			model.addAttribute("message", "No puede eliminar una mascota que no es suya");
+    			return "owners/ownerDetails";
+    		}
         	ow.removePet(pet);
     		this.petService.deletePet(pet.getId());
-    		return "redirect:/owners/{ownerId}";
+        	model.addAttribute("message", "Mascota borrada correctamente");
+
+    		return "owners/ownerDetails";
     	}
 
 }

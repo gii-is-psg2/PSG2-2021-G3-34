@@ -33,9 +33,9 @@ INSERT INTO vets VALUES (4, 'Rafael', 'Ortega', 'vet1');
 INSERT INTO vets VALUES (5, 'Henry', 'Stevens', 'vet1');
 INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins', 'vet1');
 
-INSERT INTO specialties VALUES (1, 'radiology');
-INSERT INTO specialties VALUES (2, 'surgery');
-INSERT INTO specialties VALUES (3, 'dentistry');
+INSERT INTO specialties VALUES (1, 'radiologia');
+INSERT INTO specialties VALUES (2, 'cirugia');
+INSERT INTO specialties VALUES (3, 'odontologia');
 
 INSERT INTO vet_specialties VALUES (2, 1);
 INSERT INTO vet_specialties VALUES (3, 2);
@@ -43,11 +43,11 @@ INSERT INTO vet_specialties VALUES (3, 3);
 INSERT INTO vet_specialties VALUES (4, 2);
 INSERT INTO vet_specialties VALUES (5, 1);
 
-INSERT INTO types VALUES (1, 'cat');
-INSERT INTO types VALUES (2, 'dog');
-INSERT INTO types VALUES (3, 'lizard');
-INSERT INTO types VALUES (4, 'snake');
-INSERT INTO types VALUES (5, 'bird');
+INSERT INTO types VALUES (1, 'gato');
+INSERT INTO types VALUES (2, 'perro');
+INSERT INTO types VALUES (3, 'lagato');
+INSERT INTO types VALUES (4, 'serpiente');
+INSERT INTO types VALUES (5, 'pajaro');
 INSERT INTO types VALUES (6, 'hamster');
 
 INSERT INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'george');
@@ -97,6 +97,6 @@ INSERT INTO bookings VALUES(10, '2021-12-28', 1, '2021-12-27', 5);
 INSERT INTO bookings VALUES(11, '2021-10-11', 3, '2021-10-10', 5);
 
 
-INSERT INTO adoptions(owner,possible_owner,description,adoption_state_type, pet_id) VALUES ('owner1','owner2','I am a dog',0,2);
-INSERT INTO adoptions(owner,possible_owner,description,adoption_state_type, pet_id) VALUES ('owner1','owner2','I am a dog',1,3);
-INSERT INTO adoptions(owner,possible_owner,description, adoption_state_type, pet_id) VALUES ('owner1','owner2','I am a cat',2,1);
+INSERT INTO adoptions(owner,possible_owner,description,adoption_state_type, pet_id) VALUES ('betty','peter','I am a dog',0,2);
+INSERT INTO adoptions(owner,possible_owner,description,adoption_state_type, pet_id) VALUES ('eduardo','jean','I am a dog',1,3);
+INSERT INTO adoptions(owner,possible_owner,description, adoption_state_type, pet_id) VALUES ('george','jeff','I am a cat',2,1);

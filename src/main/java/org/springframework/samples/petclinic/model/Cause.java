@@ -34,6 +34,9 @@ public class Cause extends NamedEntity{
 	
 	@NotNull
 	@Column(name = "budged_target")
+
+	//I-000720 arreglado (budget podia ser 0)
+
 	@Min(1)
 	private Double budgetTarget;
 	
